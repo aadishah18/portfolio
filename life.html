@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Life — Aadi Shah</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: #000;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* ── STORY VIEWER (full page) ── */
+    .story-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      background: #000;
+    }
+
+    .story-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.18s ease;
+    }
+    .story-img.loading { opacity: 0; }
+
+    /* progress bars */
+    .story-bars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      gap: 4px;
+      padding: 52px 12px 0;
+      z-index: 10;
+    }
+    .story-bar {
+      flex: 1;
+      height: 2.5px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .story-bar-fill {
+      height: 100%;
+      background: #fff;
+      width: 0%;
+    }
+    .story-bar-fill.done { width: 100%; }
+    .story-bar-fill.animating {
+      width: 100%;
+      transition: width 5s linear;
+    }
+
+    /* header row */
+    .story-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 14px 14px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 20;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
+      padding-bottom: 60px;
+    }
+    .story-back {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      font-weight: 500;
+    }
+    .story-back:hover { color: #fff; }
+    .story-author {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+    .story-pause-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+    .story-pause-btn:hover { color: #fff; }
+
+    /* caption */
+    .story-caption {
+      position: absolute;
+      bottom: 36px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+      z-index: 10;
+    }
+
+    /* tap zones */
+    .story-tap {
+      position: absolute;
+      top: 80px;
+      bottom: 80px;
+      width: 38%;
+      z-index: 15;
+      cursor: pointer;
+    }
+    .story-tap-prev { left: 0; }
+    .story-tap-next { right: 0; }
+
+    /* thumbnail strip at bottom */
+    .story-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      gap: 6px;
+      padding: 12px 10px 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      z-index: 10;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+    }
+    .story-strip::-webkit-scrollbar { display: none; }
+
+    .strip-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      border: 1.5px solid transparent;
+    }
+    .strip-thumb.active {
+      opacity: 1;
+      border-color: #fff;
+      transform: scale(1.08);
+    }
+    .strip-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* outside the phone — dark sides on wide screens */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="story-wrap">
+
+  <img class="story-img" id="storyImg" src="" alt="">
+
+  <div class="story-bars" id="storyBars"></div>
+
+  <div class="story-header">
+    <a href="/" class="story-back">← Aadi Shah</a>
+    <span class="story-author">life 👁</span>
+    <button class="story-pause-btn" id="pauseBtn" title="Pause">⏸</button>
+  </div>
+
+  <div class="story-caption" id="storyCaption"></div>
+
+  <div class="story-tap story-tap-prev" id="storyPrev"></div>
+  <div class="story-tap story-tap-next" id="storyNext"></div>
+
+  <div class="story-strip" id="storyStrip"></div>
+
+</div>
+
+<script>
+  const stories = [
+    { src: '/images/life/beach-sunset.jpg',      label: 'Malibu'              },
+    { src: '/images/life/usc-sunset.jpg',        label: 'USC'                 },
+    { src: '/images/life/usc-football.jpg',      label: 'USC Football'        },
+    { src: '/images/life/london.jpg',            label: 'London'              },
+    { src: '/images/life/chicago-portrait.jpg',  label: 'Chicago'             },
+    { src: '/images/life/snow.jpg',              label: 'Snow Day'            },
+    { src: '/images/life/chicago-river.jpg',     label: "St. Paddy's"         },
+    { src: '/images/life/nyc-night.jpg',         label: 'New York'            },
+    { src: '/images/life/la-skyline.jpg',        label: 'Los Angeles'         },
+    { src: '/images/life/zion.jpg',              label: 'Zion'                },
+    { src: '/images/life/pacific-cliffs.jpg',    label: 'Pacific Coast'       },
+    { src: '/images/life/coastal-waves.jpg',     label: 'Coastal'             },
+    { src: '/images/life/singapore-mbs.jpg',     label: 'Singapore'           },
+    { src: '/images/life/singapore-gardens.jpg', label: 'Gardens by the Bay'  },
+    { src: '/images/life/city-sunset.jpg',       label: 'Rooftop'             },
+    { src: '/images/life/snoop.jpg',             label: 'Snoop Dogg'          },
+    { src: '/images/life/lightning-mcqueen.jpg', label: 'Ka-chow'             },
+    { src: '/images/life/gtav.jpg',              label: 'GTA V IRL'           },
+    { src: '/images/life/ferrari-garage.jpg',    label: 'Ferraris'            },
+    { src: '/images/life/street-art.jpg',        label: 'Street Art'          },
+    { src: '/images/life/sparks.jpg',            label: 'RPL'                 },
+  ];
+
+  const imgEl    = document.getElementById('storyImg');
+  const barsEl   = document.getElementById('storyBars');
+  const caption  = document.getElementById('storyCaption');
+  const stripEl  = document.getElementById('storyStrip');
+  const pauseBtn = document.getElementById('pauseBtn');
+
+  let cur = 0, timer = null, paused = false;
+
+  // build progress bars
+  barsEl.innerHTML = stories.map(() =>
+    `<div class="story-bar"><div class="story-bar-fill"></div></div>`
+  ).join('');
+  const fills = [...barsEl.querySelectorAll('.story-bar-fill')];
+
+  // build thumbnail strip
+  stripEl.innerHTML = stories.map((s, i) =>
+    `<div class="strip-thumb${i===0?' active':''}" data-i="${i}">
+      <img src="${s.src}" alt="${s.label}" loading="lazy">
+    </div>`
+  ).join('');
+  const thumbEls = [...stripEl.querySelectorAll('.strip-thumb')];
+
+  // preload next image
+  function preload(idx) {
+    if (idx < stories.length) new Image().src = stories[idx].src;
+  }
+
+  function showSlide(idx) {
+    cur = ((idx % stories.length) + stories.length) % stories.length;
+
+    // update image
+    imgEl.classList.add('loading');
+    imgEl.src = stories[cur].src;
+    imgEl.onload = () => imgEl.classList.remove('loading');
+    caption.textContent = stories[cur].label;
+    preload(cur + 1);
+
+    // update bars
+    fills.forEach((f, i) => {
+      f.classList.remove('animating');
+      f.style.transition = 'none';
+      f.style.width = i < cur ? '100%' : '0%';
+    });
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (!paused) fills[cur].classList.add('animating');
+    }));
+
+    // update strip
+    thumbEls.forEach((t, i) => t.classList.toggle('active', i === cur));
+    thumbEls[cur]?.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+
+    // auto advance
+    clearTimeout(timer);
+    if (!paused) {
+      timer = setTimeout(() => {
+        cur < stories.length - 1 ? showSlide(cur + 1) : showSlide(0);
+      }, 5000);
+    }
+  }
+
+  function togglePause() {
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶' : '⏸';
+    if (paused) {
+      clearTimeout(timer);
+      fills[cur].classList.remove('animating');
+      // freeze width
+      fills[cur].style.width = fills[cur].getBoundingClientRect().width /
+        fills[cur].parentElement.getBoundingClientRect().width * 100 + '%';
+      fills[cur].style.transition = 'none';
+    } else {
+      showSlide(cur);
+    }
+  }
+
+  document.getElementById('storyPrev').addEventListener('click', () => showSlide(cur - 1));
+  document.getElementById('storyNext').addEventListener('click', () => showSlide(cur + 1));
+  pauseBtn.addEventListener('click', togglePause);
+  thumbEls.forEach(t => t.addEventListener('click', () => showSlide(+t.dataset.i)));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') showSlide(cur + 1);
+    if (e.key === 'ArrowLeft')  showSlide(cur - 1);
+    if (e.key === ' ') { e.preventDefault(); togglePause(); }
+  });
+
+  // kick off
+  showSlide(0);
+</script>
+
+</body>
+</html>
