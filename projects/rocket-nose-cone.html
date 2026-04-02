@@ -4,32 +4,35 @@
   <meta charset="UTF-8">
   <title>Rocket Nose Cone | Aadi Shah</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: system-ui, sans-serif; margin: 0; color: #111; }
-    nav { display: flex; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid #e5e7eb; }
-    nav a { margin-left: 1.5rem; text-decoration: none; color: #111; }
-    .container { max-width: 800px; margin: 3rem auto; padding: 0 1.5rem; line-height: 1.7; }
+    :root{--bg:#0b0b0d;--text:#f5f5f7;--muted:#6b7280;--accent:#38bdf8;--border:#1f2933;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.7;padding:3rem 1.5rem 8rem;}
+    .wrap{max-width:720px;margin:0 auto;}
+    .back{display:inline-block;font-size:0.82rem;color:var(--muted);text-decoration:none;letter-spacing:0.02em;margin-bottom:3rem;}
+    .back:hover{color:var(--accent);}
+    h1{font-size:1.9rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:0.4rem;background:linear-gradient(120deg,#f5f5f7 30%,#38bdf8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .meta{font-size:0.85rem;color:var(--muted);margin-bottom:2.5rem;}
+    p{color:#c9d1d9;margin-bottom:1.2rem;max-width:680px;}
+    h2{font-size:1.1rem;font-weight:600;color:var(--text);margin:2.5rem 0 1rem;letter-spacing:-0.01em;}
+    ul{margin-left:1.3rem;color:#c9d1d9;}
+    ul li{margin-bottom:0.4rem;}
+    .project-img{display:block;width:100%;max-height:420px;object-fit:contain;border-radius:10px;border:1px solid var(--border);background:#060e1f;padding:1rem;margin:2rem 0 0.5rem;}
+    .caption{font-size:0.82rem;color:var(--muted);text-align:center;margin-bottom:2rem;}
   </style>
 </head>
 <body>
-
-<nav>
-  <strong>AS</strong>
-  <div>
-    <a href="../index.html">Home</a>
-    <a href="../Aadi_Shah_Resume.pdf" target="_blank">Resume</a>
-  </div>
-</nav>
-
-<div class="container">
+<div class="wrap">
+  <a href="/projects.html" class="back">← Projects</a>
   <h1>Rocket Nose Cone</h1>
-  <p><em>CAD design exercise</em></p>
-
-  <p>
-    Designed a rocket nose cone as a CAD exercise, focusing on axisymmetric geometry,
-    smooth surface transitions, and parametric control of key dimensions.
-  </p>
+  <div class="meta">CAD Design Exercise · USC Rocket Propulsion Lab</div>
+  <p>Designed a rocket nose cone as a CAD exercise, focusing on axisymmetric geometry, smooth surface transitions, and parametric control of key dimensions.</p>
+  <img class="project-img" src="/images/cad/cad-sketch.png" alt="Rocket nose cone CAD">
+  <div class="caption">Parametric sketch defining nose cone geometry and profile.</div>
 </div>
-
 </body>
 </html>

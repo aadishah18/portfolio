@@ -4,127 +4,39 @@
   <meta charset="UTF-8">
   <title>Vape Lock Case | Aadi Shah</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: system-ui, sans-serif;
-      margin: 0;
-      color: #111;
-      background: #fff;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      padding: 1.2rem 2rem;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #111;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 3rem auto 4rem;
-      padding: 0 1.5rem;
-      line-height: 1.7;
-    }
-
-    h1 {
-      margin-bottom: 0.4rem;
-    }
-
-    .meta {
-      color: #6b7280;
-      margin-bottom: 2rem;
-    }
-
-    .intro {
-      max-width: 720px;
-      color: #444;
-      margin-bottom: 1.6rem;
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      max-height: 220px;
-      object-fit: contain;
-      margin: 2rem auto 0.5rem;
-      border: 1px solid #e5e7eb;
-      border-radius: 6px;
-      background: #fafafa;
-      padding: 0.4rem;
-    }
-
-    .caption {
-      font-size: 0.9rem;
-      color: #555;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    h2 {
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    ul {
-      margin-left: 1.2rem;
-    }
+    :root{--bg:#0b0b0d;--text:#f5f5f7;--muted:#6b7280;--accent:#38bdf8;--border:#1f2933;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.7;padding:3rem 1.5rem 8rem;}
+    .wrap{max-width:720px;margin:0 auto;}
+    .back{display:inline-block;font-size:0.82rem;color:var(--muted);text-decoration:none;letter-spacing:0.02em;margin-bottom:3rem;}
+    .back:hover{color:var(--accent);}
+    h1{font-size:1.9rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:0.4rem;background:linear-gradient(120deg,#f5f5f7 30%,#38bdf8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .meta{font-size:0.85rem;color:var(--muted);margin-bottom:2.5rem;}
+    p{color:#c9d1d9;margin-bottom:1.2rem;max-width:680px;}
+    h2{font-size:1.1rem;font-weight:600;color:var(--text);margin:2.5rem 0 1rem;letter-spacing:-0.01em;}
+    ul{margin-left:1.3rem;color:#c9d1d9;}
+    ul li{margin-bottom:0.4rem;}
   </style>
 </head>
-
 <body>
-
-<nav>
-  <strong>AS</strong>
-  <div>
-    <a href="../index.html">Home</a>
-    <a href="../Aadi_Shah_Resume.pdf" target="_blank">Resume</a>
-  </div>
-</nav>
-
-<div class="container">
+<div class="wrap">
+  <a href="/projects.html" class="back">← Projects</a>
   <h1>Vape Lock Case</h1>
   <div class="meta">Personal Project · Mechanical + Hardware · Work in Progress</div>
-
-  <p class="intro">
-    This project explores a combined mechanical and hardware-based system designed to
-    reduce vaping through physical constraint and behavioral feedback rather than pure
-    restriction. The system is intended to regulate access and usage over time instead
-    of relying on complete denial.
-  </p>
-
-  <p class="intro">
-    The core idea is to place the vape inside a controlled enclosure that interfaces with
-    a mobile device, allowing usage to be gradually reduced in a manner similar to phone
-    screen-time controls. The system is designed to mechanically limit access while also
-    enabling hardware-level control of the device.
-  </p>
-
-  <!-- REFERENCE IMAGE -->
-  <img src="/images/vape/vape-case.jpg" alt="Vape device reference image">
-  <div class="caption">
-    Reference image of a vape device shown for context only. The actual mechanical enclosure
-    and hardware system are under development and not shown.
-  </div>
-
+  <p>This project explores a combined mechanical and hardware-based system designed to reduce vaping through physical constraint and behavioral feedback rather than pure restriction. The system is intended to regulate access and usage over time instead of relying on complete denial.</p>
+  <p>The core idea is to place the vape inside a controlled enclosure that interfaces with a mobile device, allowing usage to be gradually reduced in a manner similar to phone screen-time controls.</p>
   <h2>System Concept</h2>
   <ul>
     <li>Mechanical enclosure to physically contain the vape device</li>
-    <li>Embedded hardware to interface with the vape’s power or control circuitry</li>
+    <li>Embedded hardware to interface with the vape's power or control circuitry</li>
     <li>Phone-connected logic to regulate usage over time</li>
     <li>Ability to reduce output intensity or fully disable the device</li>
   </ul>
-
   <h2>Current Focus</h2>
   <ul>
     <li>Mechanical design and tolerancing for the enclosure</li>
@@ -132,12 +44,6 @@
     <li>Designing safe and reversible control mechanisms</li>
     <li>Defining user interaction around gradual reduction</li>
   </ul>
-
-  <p class="intro">
-    This project is still in development, with current efforts focused on validating the
-    mechanical and hardware architecture before deeper software integration.
-  </p>
 </div>
-
 </body>
 </html>
