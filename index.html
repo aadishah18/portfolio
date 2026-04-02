@@ -381,6 +381,163 @@
       transform: translateY(-2px) translateX(2px);
     }
 
+    /* ── STORY HIGHLIGHTS ── */
+    .stories-row {
+      display: flex;
+      gap: 1.4rem;
+      margin-top: 1.8rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scrollbar-width: none;
+    }
+    .stories-row::-webkit-scrollbar { display: none; }
+
+    .story-thumb {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .story-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      padding: 2.5px;
+      background: linear-gradient(135deg, #f97316, #ec4899, #8b5cf6);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .story-thumb:hover .story-ring { transform: scale(1.06); }
+    .story-ring-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2.5px solid var(--bg);
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .story-ring-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .story-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      max-width: 72px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .story-thumb.seen .story-ring {
+      background: var(--border);
+    }
+
+    /* story overlay */
+    .story-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .story-overlay.open { opacity: 1; pointer-events: all; }
+
+    .story-media {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 420px;
+      max-height: 100vh;
+      margin: 0 auto;
+    }
+    .story-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* progress bars */
+    .story-bars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      gap: 4px;
+      padding: 14px 12px 0;
+      z-index: 10;
+    }
+    .story-bar {
+      flex: 1;
+      height: 2.5px;
+      background: rgba(255,255,255,0.35);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .story-bar-fill {
+      height: 100%;
+      background: #fff;
+      width: 0%;
+      transition: none;
+    }
+    .story-bar-fill.done { width: 100%; }
+    .story-bar-fill.animating {
+      width: 100%;
+      transition: width 5s linear;
+    }
+
+    /* close */
+    .story-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 20;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      opacity: 0.85;
+    }
+    .story-close:hover { opacity: 1; }
+
+    /* caption */
+    .story-caption {
+      position: absolute;
+      bottom: 28px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+      z-index: 10;
+    }
+
+    /* tap zones */
+    .story-tap {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40%;
+      z-index: 15;
+      cursor: pointer;
+    }
+    .story-tap-prev { left: 0; }
+    .story-tap-next { right: 0; }
+
     /* ── BACK TO TOP ── */
     .back-top {
       position: fixed;
@@ -644,6 +801,52 @@
     </div>
   </section>
 
+  <!-- LIFE -->
+  <section class="fade-up">
+    <h2>Life</h2>
+    <p class="section-intro">Outside the desk.</p>
+    <div class="stories-row" id="storiesRow">
+
+      <div class="story-thumb" data-index="0">
+        <div class="story-ring"><div class="story-ring-inner"><img src="/images/life/la-skyline.jpg" alt="Los Angeles"></div></div>
+        <span class="story-label">Los Angeles</span>
+      </div>
+
+      <div class="story-thumb" data-index="1">
+        <div class="story-ring"><div class="story-ring-inner"><img src="/images/life/london.jpg" alt="London"></div></div>
+        <span class="story-label">London</span>
+      </div>
+
+      <div class="story-thumb" data-index="2">
+        <div class="story-ring"><div class="story-ring-inner"><img src="/images/life/big-sur.jpg" alt="Big Sur"></div></div>
+        <span class="story-label">Big Sur</span>
+      </div>
+
+      <div class="story-thumb" data-index="3">
+        <div class="story-ring"><div class="story-ring-inner"><img src="/images/life/coastal.jpg" alt="Pacific Coast"></div></div>
+        <span class="story-label">Pacific Coast</span>
+      </div>
+
+      <div class="story-thumb" data-index="4">
+        <div class="story-ring"><div class="story-ring-inner"><img src="/images/life/city-sunset.jpg" alt="Sunset"></div></div>
+        <span class="story-label">Sunset</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STORY OVERLAY -->
+  <div class="story-overlay" id="storyOverlay">
+    <div class="story-media">
+      <div class="story-bars" id="storyBars"></div>
+      <button class="story-close" id="storyClose">✕</button>
+      <img id="storyImg" src="" alt="">
+      <div class="story-tap story-tap-prev" id="storyPrev"></div>
+      <div class="story-tap story-tap-next" id="storyNext"></div>
+      <div class="story-caption" id="storyCaption"></div>
+    </div>
+  </div>
+
   <footer>
     Based in Los Angeles &nbsp;·&nbsp; Open to chats &nbsp;·&nbsp; <a href="mailto:agshah@usc.edu">agshah@usc.edu</a>
     <br>© Aadi Shah
@@ -689,6 +892,75 @@
     setTimeout(tick, delay);
   }
   tick();
+
+  // ── STORY VIEWER ──
+  const stories = [
+    { src: '/images/life/la-skyline.jpg',  label: 'Los Angeles'   },
+    { src: '/images/life/london.jpg',      label: 'London'        },
+    { src: '/images/life/big-sur.jpg',     label: 'Big Sur'       },
+    { src: '/images/life/coastal.jpg',     label: 'Pacific Coast' },
+    { src: '/images/life/city-sunset.jpg', label: 'Sunset'        },
+  ];
+
+  const overlay   = document.getElementById('storyOverlay');
+  const storyImg  = document.getElementById('storyImg');
+  const barsEl    = document.getElementById('storyBars');
+  const caption   = document.getElementById('storyCaption');
+  const thumbs    = document.querySelectorAll('.story-thumb');
+  let cur = 0, timer = null;
+
+  // build progress bars
+  barsEl.innerHTML = stories.map(() =>
+    `<div class="story-bar"><div class="story-bar-fill"></div></div>`
+  ).join('');
+  const fills = barsEl.querySelectorAll('.story-bar-fill');
+
+  function openStory(idx) {
+    cur = idx;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showSlide(cur);
+  }
+
+  function showSlide(idx) {
+    cur = (idx + stories.length) % stories.length;
+    storyImg.src = stories[cur].src;
+    caption.textContent = stories[cur].label;
+    // reset bars
+    fills.forEach((f, i) => {
+      f.classList.remove('animating');
+      f.style.transition = 'none';
+      f.style.width = i < cur ? '100%' : '0%';
+    });
+    // animate current bar
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      fills[cur].classList.add('animating');
+    }));
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (cur < stories.length - 1) showSlide(cur + 1);
+      else closeStory();
+    }, 5000);
+  }
+
+  function closeStory() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    clearTimeout(timer);
+    fills.forEach(f => { f.classList.remove('animating'); f.style.width = '0%'; });
+    thumbs[cur]?.classList.add('seen');
+  }
+
+  thumbs.forEach(t => t.addEventListener('click', () => openStory(+t.dataset.index)));
+  document.getElementById('storyPrev').addEventListener('click', () => showSlide(cur - 1));
+  document.getElementById('storyNext').addEventListener('click', () => showSlide(cur + 1));
+  document.getElementById('storyClose').addEventListener('click', closeStory);
+  overlay.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeStory();
+    if (e.key === 'ArrowRight') showSlide(cur + 1);
+    if (e.key === 'ArrowLeft') showSlide(cur - 1);
+  });
+  overlay.setAttribute('tabindex', '0');
 
 </script>
 
