@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Aadi Shah</title>
+  <meta name="description" content="USC junior building at the intersection of technology and markets — venture builder, founder of TBLE42, and mechanical engineer.">
   <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -25,10 +23,9 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
-    /* noise texture overlay */
+    /* ── NOISE TEXTURE ── */
     body::before {
       content: '';
       position: fixed;
@@ -48,7 +45,19 @@
       line-height: 1.65;
     }
 
-    /* ── FADE-UP ANIMATION ── */
+    /* ── SCROLL PROGRESS BAR ── */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #818cf8);
+      z-index: 10000;
+      transition: width 0.08s linear;
+    }
+
+    /* ── FADE-UP ── */
     .fade-up {
       opacity: 0;
       transform: translateY(28px);
@@ -59,7 +68,7 @@
       transform: none;
     }
 
-    /* ── FLOATING HEADER ── */
+    /* ── HEADER ── */
     .header-wrap {
       position: sticky;
       top: 1rem;
@@ -79,22 +88,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: none;
-      transition: box-shadow 0.25s ease, padding 0.25s ease, transform 0.25s ease;
+      transition: box-shadow 0.25s ease, padding 0.25s ease, background 0.25s ease;
     }
-
     .header.scrolled {
-      background: rgba(11, 11, 13, 0.75);
+      background: rgba(11,11,13,0.75);
       backdrop-filter: blur(14px);
       box-shadow: 0 28px 70px rgba(0,0,0,0.55);
       padding: 0.65rem 1.2rem;
     }
 
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
 
     .logo {
       font-weight: 700;
@@ -114,16 +117,9 @@
       text-decoration: none;
       transition: font-size 0.25s ease, letter-spacing 0.25s ease;
     }
-    .header.scrolled .name {
-      font-size: 1.15rem;
-      letter-spacing: -0.015em;
-    }
+    .header.scrolled .name { font-size: 1.15rem; letter-spacing: -0.015em; }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-    }
-
+    .header-right { display: flex; align-items: center; }
     .header-right a {
       margin-left: 1rem;
       color: var(--text);
@@ -136,14 +132,8 @@
       font-size: 0.9rem !important;
       color: var(--muted) !important;
       font-weight: 500;
-      transition: color 0.15s ease;
     }
     .nav-link:hover { color: var(--accent) !important; }
-
-    @media (max-width: 560px) {
-      .nav-link { display: none; }
-      .logo { display: none; }
-    }
 
     /* ── PAGE ── */
     .page {
@@ -153,9 +143,9 @@
     }
 
     /* ── HERO ── */
-    .hero { margin-bottom: 5.5rem; }
+    .hero { margin-bottom: 2.5rem; }
 
-    .hero img {
+    .hero > img {
       width: 100%;
       max-width: 650px;
       height: 300px;
@@ -227,6 +217,29 @@
       border-color: rgba(56,189,248,0.35);
     }
 
+    /* ── CURRENTLY BUILDING STRIP ── */
+    .building-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: rgba(56,189,248,0.05);
+      border: 1px solid rgba(56,189,248,0.14);
+      border-radius: 12px;
+      padding: 0.7rem 1.1rem;
+      margin-bottom: 5.5rem;
+    }
+    .building-strip strong { color: var(--text); font-weight: 600; }
+    .building-pulse {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse-dot 2.2s ease infinite;
+    }
+
     section { margin-top: 6rem; }
 
     h2 {
@@ -235,11 +248,79 @@
       margin-bottom: 0.6rem;
     }
 
-    .projects-intro {
+    .section-intro {
       font-size: 0.95rem;
       color: var(--muted);
       max-width: 520px;
       margin-bottom: 2rem;
+    }
+
+    /* ── WORK ── */
+    .work-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .work-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.4rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0)), var(--panel);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .work-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 32px rgba(56,189,248,0.1);
+    }
+    .work-item.active {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 25px 60px rgba(0,0,0,0.55);
+    }
+
+    .work-left { display: flex; align-items: center; gap: 1rem; }
+    .work-left img {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: #020617;
+      flex-shrink: 0;
+    }
+
+    .work-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .work-role { font-size: 0.9rem; color: var(--muted); }
+    .work-date { font-size: 0.9rem; color: var(--muted); white-space: nowrap; }
+
+    /* ── LIVE DOT ── */
+    .live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse-dot 2.2s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      60% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+    }
+
+    /* mobile work layout */
+    @media (max-width: 560px) {
+      .nav-link, .logo { display: none; }
+      .work-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .work-date { margin-left: calc(42px + 1rem); font-size: 0.82rem; }
     }
 
     /* ── PROJECTS GRID ── */
@@ -249,15 +330,11 @@
       gap: 2rem;
       margin-top: 2rem;
     }
-    @media (max-width: 700px) {
-      .projects { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 700px) { .projects { grid-template-columns: 1fr; } }
 
     .card {
       position: relative;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0)),
-        var(--panel);
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0)), var(--panel);
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
@@ -277,16 +354,16 @@
       border-bottom: 1px solid var(--border);
       filter: brightness(0.9) contrast(1.05);
     }
+    /* SVG logos: contain + pad instead of stretch */
+    .card img[src$=".svg"] {
+      object-fit: contain;
+      padding: 1.5rem 2.5rem;
+      filter: none;
+      background: #060e1f;
+    }
     .card-content { padding: 1.2rem; }
-    .card-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-    .card-meta {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
+    .card-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .card-meta { font-size: 0.9rem; color: var(--muted); }
 
     .external {
       position: absolute;
@@ -304,78 +381,27 @@
       transform: translateY(-2px) translateX(2px);
     }
 
-    /* ── WORK SECTION ── */
-    .work-list {
-      margin-top: 2rem;
+    /* ── GITHUB ACTIVITY ── */
+    .gh-list {
+      margin-top: 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 0.65rem;
     }
-
-    .work-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 1.4rem;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0)),
-        var(--panel);
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
-    .work-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 0 1px var(--accent), 0 8px 32px rgba(56,189,248,0.1);
-    }
-    .work-item.active {
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 25px 60px rgba(0,0,0,0.55);
-    }
-
-    .work-left {
+    .gh-item {
       display: flex;
       align-items: center;
-      gap: 1rem;
-    }
-    .work-left img {
-      width: 42px;
-      height: 42px;
+      gap: 0.85rem;
+      font-size: 0.88rem;
+      padding: 0.75rem 1rem;
       border-radius: 10px;
-      object-fit: cover;
-      background: #020617;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
     }
-
-    .work-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .work-role {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    .work-date {
-      font-size: 0.9rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    /* ── LIVE DOT ── */
-    .live-dot {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      background: #22c55e;
-      border-radius: 50%;
-      flex-shrink: 0;
-      animation: pulse-dot 2.2s ease infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-      60% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
-    }
+    .gh-icon { color: var(--accent); font-size: 0.8rem; flex-shrink: 0; }
+    .gh-msg { color: var(--text); font-weight: 500; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .gh-repo { font-size: 0.78rem; color: var(--muted); }
+    .gh-date { font-size: 0.78rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
 
     /* ── BACK TO TOP ── */
     .back-top {
@@ -400,15 +426,8 @@
       z-index: 50;
       pointer-events: none;
     }
-    .back-top.show {
-      opacity: 1;
-      transform: none;
-      pointer-events: auto;
-    }
-    .back-top:hover {
-      color: var(--accent);
-      border-color: rgba(56,189,248,0.4);
-    }
+    .back-top.show { opacity: 1; transform: none; pointer-events: auto; }
+    .back-top:hover { color: var(--accent); border-color: rgba(56,189,248,0.4); }
 
     /* ── FOOTER ── */
     footer {
@@ -419,10 +438,7 @@
       text-align: center;
       line-height: 2;
     }
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
   </style>
@@ -430,21 +446,20 @@
 
 <body id="top">
 
-<!-- FLOATING HEADER -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- HEADER -->
 <div class="header-wrap">
   <div class="header">
     <div class="header-left">
       <a href="#top" class="logo">AS</a>
       <a href="#top" class="name">Aadi Shah</a>
     </div>
-
     <div class="header-right">
       <a href="#work" class="nav-link">Work</a>
       <a href="#projects" class="nav-link">Projects</a>
       <a href="mailto:agshah@usc.edu" title="Email"><i class="fa-solid fa-envelope"></i></a>
-      <a href="https://www.linkedin.com/in/aadigshah/" target="_blank" title="LinkedIn">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
+      <a href="https://www.linkedin.com/in/aadigshah/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       <a href="Aadi_Shah_Resume_v2.pdf" target="_blank">Resume</a>
     </div>
   </div>
@@ -452,18 +467,14 @@
 
 <main class="page">
 
-  <!-- ABOUT -->
+  <!-- HERO -->
   <div class="hero fade-up">
     <img src="/images/home/me.jpeg" alt="Photo of Aadi Shah">
-
     <h1>Hi! I'm Aadi</h1>
-
     <p class="tagline"><span id="typewriter"></span><span class="cursor"></span></p>
-
     <p class="intro">
       I'm a USC junior building at the intersection of technology and markets. Currently working with Scott Stanford at ACME Capital & Silicon Foundry on a stealth AI venture for the VC industry, and founding TBLE42, a dining reservation platform for Singapore. Previously did strategy and investing at Bain Capital and EY, scouted early-stage deals at Draper Associates, and closed $25K+ in sales at a Southeast Asia hardware distributor. I'm also a mechanical engineer — I've worked on rocket propulsion, autonomous vehicles, and am completing a B.S. at USC.
     </p>
-
     <div class="skills">
       <span class="skill-pill">Python</span>
       <span class="skill-pill">Next.js</span>
@@ -478,10 +489,15 @@
     </div>
   </div>
 
+  <!-- CURRENTLY BUILDING STRIP -->
+  <div class="building-strip fade-up">
+    <span class="building-pulse"></span>
+    Currently building: <strong>TBLE42</strong> — dining reservations for Singapore &nbsp;·&nbsp; <strong>Stealth AI</strong> for VC at ACME Capital
+  </div>
+
   <!-- WORK -->
   <section id="work" class="fade-up">
     <h2>Work</h2>
-
     <div class="work-list">
 
       <div class="work-item active">
@@ -578,11 +594,10 @@
   <!-- PROJECTS -->
   <section id="projects" class="fade-up">
     <h2>Projects</h2>
-    <p class="projects-intro">
+    <p class="section-intro">
       A selection of hardware, mechanical, and systems projects spanning startups,
       coursework, and team-based engineering.
     </p>
-
     <div class="projects">
 
       <a class="card" href="#">
@@ -630,6 +645,15 @@
         </div>
       </a>
 
+      <a class="card" href="projects/rocket-nose-cone.html">
+        <i class="fa-solid fa-arrow-up-right-from-square external"></i>
+        <img src="/images/cad/cad-sketch.png" alt="Rocket nose cone">
+        <div class="card-content">
+          <div class="card-title">Rocket Nose Cone</div>
+          <div class="card-meta">Parametric CAD · Axisymmetric design</div>
+        </div>
+      </a>
+
       <a class="card" href="projects/cad-projects.html">
         <i class="fa-solid fa-arrow-up-right-from-square external"></i>
         <img src="/images/cad/cad-part-exploded.png" alt="CAD projects">
@@ -642,6 +666,15 @@
     </div>
   </section>
 
+  <!-- GITHUB ACTIVITY -->
+  <section class="fade-up">
+    <h2>Recent commits</h2>
+    <p class="section-intro">What I've been pushing lately.</p>
+    <div class="gh-list" id="gh-activity">
+      <div class="gh-item"><span class="gh-icon"><i class="fa-solid fa-spinner fa-spin"></i></span><span class="gh-msg" style="color:var(--muted)">Loading…</span></div>
+    </div>
+  </section>
+
   <footer>
     Based in Los Angeles &nbsp;·&nbsp; Open to chats &nbsp;·&nbsp; <a href="mailto:agshah@usc.edu">agshah@usc.edu</a>
     <br>© Aadi Shah
@@ -649,57 +682,69 @@
 
 </main>
 
-<!-- BACK TO TOP -->
 <a href="#top" class="back-top" id="backTop" aria-label="Back to top">
   <i class="fa-solid fa-arrow-up"></i>
 </a>
 
 <script>
-  // Sticky header
-  const header = document.querySelector('.header');
-  const wrap = document.querySelector('.header-wrap');
+  const header  = document.querySelector('.header');
   const backTop = document.getElementById('backTop');
+  const bar     = document.getElementById('progressBar');
 
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY > 20;
-    header.classList.toggle('scrolled', scrolled);
-    backTop.classList.toggle('show', window.scrollY > 400);
+    const y = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (y / total * 100) + '%';
+    header.classList.toggle('scrolled', y > 20);
+    backTop.classList.toggle('show', y > 400);
   });
 
   // Fade-up on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
   }, { threshold: 0.08 });
-
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
   // Typewriter
   const phrases = ['venture builder.', 'solo founder.', 'mechanical engineer.', 'USC junior.'];
   let pi = 0, ci = 0, deleting = false;
   const tw = document.getElementById('typewriter');
-
   function tick() {
     const phrase = phrases[pi];
     tw.textContent = deleting ? phrase.slice(0, ci--) : phrase.slice(0, ci++);
-
     let delay = deleting ? 45 : 90;
-    if (!deleting && ci > phrase.length) {
-      deleting = true;
-      delay = 1600;
-    } else if (deleting && ci < 0) {
-      deleting = false;
-      ci = 0;
-      pi = (pi + 1) % phrases.length;
-      delay = 400;
-    }
+    if (!deleting && ci > phrase.length) { deleting = true; delay = 1600; }
+    else if (deleting && ci < 0) { deleting = false; ci = 0; pi = (pi + 1) % phrases.length; delay = 400; }
     setTimeout(tick, delay);
   }
   tick();
+
+  // GitHub activity
+  fetch('https://api.github.com/users/aadigshahh/events/public')
+    .then(r => r.json())
+    .then(events => {
+      const pushes = events.filter(e => e.type === 'PushEvent').slice(0, 5);
+      const el = document.getElementById('gh-activity');
+      if (!pushes.length) { el.innerHTML = '<p style="color:var(--muted);font-size:0.88rem">No recent activity.</p>'; return; }
+      el.innerHTML = pushes.map(e => {
+        const msg  = (e.payload.commits?.[0]?.message || 'pushed code').split('\n')[0];
+        const repo = e.repo.name.replace('aadigshahh/', '');
+        const date = new Date(e.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        return `<div class="gh-item">
+          <i class="fa-solid fa-code-commit gh-icon"></i>
+          <div style="flex:1;min-width:0">
+            <div class="gh-msg">${msg}</div>
+            <div class="gh-repo">${repo}</div>
+          </div>
+          <div class="gh-date">${date}</div>
+        </div>`;
+      }).join('');
+    })
+    .catch(() => {
+      document.getElementById('gh-activity').innerHTML = '';
+    });
 </script>
 
 </body>
