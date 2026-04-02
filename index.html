@@ -61,16 +61,12 @@
 
     /* ── FLOATING HEADER ── */
     .header-wrap {
-      position: relative;
+      position: sticky;
+      top: 1rem;
       z-index: 100;
       display: flex;
       justify-content: center;
       pointer-events: none;
-    }
-
-    .header-wrap.floating {
-      position: sticky;
-      top: 1.2rem;
     }
 
     .header {
@@ -667,7 +663,6 @@
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY > 20;
     header.classList.toggle('scrolled', scrolled);
-    wrap.classList.toggle('floating', scrolled);
     backTop.classList.toggle('show', window.scrollY > 400);
   });
 
