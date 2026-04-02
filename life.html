@@ -2,130 +2,259 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Aadi Shah</title>
+  <title>Life — Aadi Shah</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: #000;
-      overflow: hidden;
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --panel: #020617;
+      --text: #f5f5f7;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --border: #1f2933;
     }
 
-    img {
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body::before {
+      content: '';
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
     }
-    img.hidden { opacity: 0; }
 
-    .bars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      gap: 3px;
-      padding: 10px 10px 0;
-      z-index: 10;
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
     }
-    .bar {
-      flex: 1;
-      height: 2px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 2px;
+
+    /* ── HEADER ── */
+    .header-wrap {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .header {
+      pointer-events: auto;
+      width: 100%;
+      max-width: 720px;
+      background: transparent;
+      border-radius: 18px;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: box-shadow 0.25s ease, padding 0.25s ease, background 0.25s ease;
+    }
+    .header.scrolled {
+      background: rgba(11,11,13,0.75);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 28px 70px rgba(0,0,0,0.55);
+      padding: 0.65rem 1.2rem;
+    }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .logo { font-weight: 700; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+    .logo:hover { color: var(--accent); }
+    .name { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); text-decoration: none; transition: font-size 0.25s ease; }
+    .header.scrolled .name { font-size: 1.15rem; }
+    .header-right { display: flex; align-items: center; }
+    .header-right a { margin-left: 1rem; color: var(--text); text-decoration: none; font-size: 1.05rem; }
+    .header-right a:hover { color: var(--accent); }
+    .nav-link { font-size: 0.9rem !important; color: var(--muted) !important; font-weight: 500; }
+    .nav-link:hover { color: var(--accent) !important; }
+    @media (max-width: 560px) { .nav-link, .logo { display: none; } }
+
+    /* ── PAGE ── */
+    .page {
+      max-width: 720px;
+      margin: 2rem auto 7rem;
+      padding: 0 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.035em;
+      background: linear-gradient(120deg, #f5f5f7 30%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .intro {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* ── GRID ── */
+    .life-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      border-radius: 12px;
       overflow: hidden;
     }
-    .bar-fill {
-      height: 100%;
-      background: #fff;
-      width: 0%;
-    }
-    .bar-fill.done { width: 100%; }
-    .bar-fill.go {
+
+    .life-grid img {
       width: 100%;
-      transition: width 5s linear;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.92);
+      transition: filter 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
     }
 
-    .tap { position: fixed; top: 0; bottom: 0; width: 45%; z-index: 5; cursor: pointer; }
-    .tap-l { left: 0; }
-    .tap-r { right: 0; }
+    .life-grid img:hover {
+      filter: brightness(1.08);
+      transform: scale(1.03);
+      z-index: 1;
+      position: relative;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 5000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.6rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .lightbox-close:hover { color: #fff; }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      opacity: 0.85;
+      text-align: center;
+      line-height: 2;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
   </style>
 </head>
+
 <body>
 
-  <img id="img" src="" alt="">
-  <div class="bars" id="bars"></div>
-  <div class="tap tap-l" id="prev"></div>
-  <div class="tap tap-r" id="next"></div>
+<div class="header-wrap">
+  <div class="header" id="header">
+    <div class="header-left">
+      <a href="/" class="logo">AS</a>
+      <a href="/" class="name">Aadi Shah</a>
+    </div>
+    <div class="header-right">
+      <a href="/#work" class="nav-link">Work</a>
+      <a href="/projects.html" class="nav-link">Projects</a>
+      <a href="mailto:agshah@usc.edu" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/aadigshah/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="Aadi_Shah_Resume.pdf" target="_blank">Resume</a>
+    </div>
+  </div>
+</div>
+
+<main class="page">
+
+  <h1>Life</h1>
+  <p class="intro">Outside the desk.</p>
+
+  <div class="life-grid">
+    <img src="/images/life/beach-sunset.jpg"      alt="Malibu">
+    <img src="/images/life/usc-sunset.jpg"        alt="USC">
+    <img src="/images/life/london.jpg"            alt="London">
+    <img src="/images/life/singapore-mbs.jpg"     alt="Singapore">
+    <img src="/images/life/nyc-night.jpg"         alt="New York">
+    <img src="/images/life/zion.jpg"              alt="Zion">
+    <img src="/images/life/coastal-waves.jpg"     alt="Coastal">
+    <img src="/images/life/snoop.jpg"             alt="Snoop Dogg">
+    <img src="/images/life/la-skyline.jpg"        alt="Los Angeles">
+    <img src="/images/life/usc-football.jpg"      alt="USC Football">
+    <img src="/images/life/chicago-river.jpg"     alt="Chicago">
+    <img src="/images/life/snow.jpg"              alt="Snow Day">
+    <img src="/images/life/pacific-cliffs.jpg"    alt="Pacific Coast">
+    <img src="/images/life/singapore-gardens.jpg" alt="Gardens by the Bay">
+    <img src="/images/life/city-sunset.jpg"       alt="Rooftop">
+    <img src="/images/life/ferrari-garage.jpg"    alt="Ferraris">
+    <img src="/images/life/lightning-mcqueen.jpg" alt="Ka-chow">
+    <img src="/images/life/gtav.jpg"              alt="GTA V IRL">
+    <img src="/images/life/street-art.jpg"        alt="Street Art">
+    <img src="/images/life/sparks.jpg"            alt="RPL">
+    <img src="/images/life/nyc-night.jpg"         alt="New York">
+  </div>
+
+  <footer>
+    Based in Los Angeles &nbsp;·&nbsp; <a href="mailto:agshah@usc.edu">agshah@usc.edu</a>
+    <br>© Aadi Shah
+  </footer>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">✕</button>
+  <img id="lbImg" src="" alt="">
+</div>
 
 <script>
-  const photos = [
-    '/images/life/beach-sunset.jpg',
-    '/images/life/usc-sunset.jpg',
-    '/images/life/usc-football.jpg',
-    '/images/life/london.jpg',
-    '/images/life/chicago-portrait.jpg',
-    '/images/life/snow.jpg',
-    '/images/life/chicago-river.jpg',
-    '/images/life/nyc-night.jpg',
-    '/images/life/la-skyline.jpg',
-    '/images/life/zion.jpg',
-    '/images/life/pacific-cliffs.jpg',
-    '/images/life/coastal-waves.jpg',
-    '/images/life/singapore-mbs.jpg',
-    '/images/life/singapore-gardens.jpg',
-    '/images/life/city-sunset.jpg',
-    '/images/life/snoop.jpg',
-    '/images/life/lightning-mcqueen.jpg',
-    '/images/life/gtav.jpg',
-    '/images/life/ferrari-garage.jpg',
-    '/images/life/street-art.jpg',
-    '/images/life/sparks.jpg',
-  ];
+  const header  = document.getElementById('header');
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lbImg');
 
-  const img  = document.getElementById('img');
-  const bars = document.getElementById('bars');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
 
-  bars.innerHTML = photos.map(() =>
-    `<div class="bar"><div class="bar-fill"></div></div>`
-  ).join('');
-  const fills = [...bars.querySelectorAll('.bar-fill')];
-
-  let cur = 0, t = null;
-
-  function go(idx) {
-    cur = ((idx % photos.length) + photos.length) % photos.length;
-    img.classList.add('hidden');
-    img.src = photos[cur];
-    img.onload = () => img.classList.remove('hidden');
-    if (cur + 1 < photos.length) new Image().src = photos[cur + 1];
-
-    fills.forEach((f, i) => {
-      f.classList.remove('go');
-      f.style.transition = 'none';
-      f.style.width = i < cur ? '100%' : '0%';
+  document.querySelectorAll('.life-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lb.classList.add('open');
     });
-    requestAnimationFrame(() => requestAnimationFrame(() => fills[cur].classList.add('go')));
-
-    clearTimeout(t);
-    t = setTimeout(() => go(cur + 1 < photos.length ? cur + 1 : 0), 5000);
-  }
-
-  document.getElementById('prev').addEventListener('click', () => go(cur - 1));
-  document.getElementById('next').addEventListener('click', () => go(cur + 1));
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') go(cur + 1);
-    if (e.key === 'ArrowLeft')  go(cur - 1);
   });
 
-  go(0);
+  function closeLb() { lb.classList.remove('open'); }
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 </script>
+
 </body>
 </html>
