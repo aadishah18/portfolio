@@ -381,6 +381,33 @@
       transform: translateY(-2px) translateX(2px);
     }
 
+    /* ── LIFE GRID ── */
+    .life-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin-top: 1.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .life-grid img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.92);
+      transition: filter 0.2s ease, transform 0.2s ease;
+    }
+    .life-grid img:hover {
+      filter: brightness(1.05);
+      transform: scale(1.02);
+      z-index: 1;
+      position: relative;
+    }
+    @media (max-width: 560px) {
+      .life-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    }
+
     /* ── BACK TO TOP ── */
     .back-top {
       position: fixed;
@@ -436,7 +463,6 @@
     <div class="header-right">
       <a href="#work" class="nav-link">Work</a>
       <a href="#projects" class="nav-link">Projects</a>
-      <a href="/life.html" target="_blank" class="nav-link">Life</a>
       <a href="mailto:agshah@usc.edu" title="Email"><i class="fa-solid fa-envelope"></i></a>
       <a href="https://www.linkedin.com/in/aadigshah/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       <a href="Aadi_Shah_Resume_v2.pdf" target="_blank">Resume</a>
@@ -642,6 +668,23 @@
         </div>
       </a>
 
+    </div>
+  </section>
+
+  <!-- LIFE -->
+  <section class="fade-up">
+    <h2>Life</h2>
+    <p class="section-intro">Outside the desk.</p>
+    <div class="life-grid">
+      <img src="/images/life/beach-sunset.jpg"      alt="Malibu">
+      <img src="/images/life/usc-sunset.jpg"        alt="USC">
+      <img src="/images/life/london.jpg"            alt="London">
+      <img src="/images/life/singapore-mbs.jpg"     alt="Singapore">
+      <img src="/images/life/nyc-night.jpg"         alt="New York">
+      <img src="/images/life/zion.jpg"              alt="Zion">
+      <img src="/images/life/chicago-portrait.jpg"  alt="Chicago">
+      <img src="/images/life/snoop.jpg"             alt="Snoop Dogg">
+      <img src="/images/life/la-skyline.jpg"        alt="Los Angeles">
     </div>
   </section>
 
