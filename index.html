@@ -381,28 +381,6 @@
       transform: translateY(-2px) translateX(2px);
     }
 
-    /* ── GITHUB ACTIVITY ── */
-    .gh-list {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-    }
-    .gh-item {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      font-size: 0.88rem;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-    }
-    .gh-icon { color: var(--accent); font-size: 0.8rem; flex-shrink: 0; }
-    .gh-msg { color: var(--text); font-weight: 500; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .gh-repo { font-size: 0.78rem; color: var(--muted); }
-    .gh-date { font-size: 0.78rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
-
     /* ── BACK TO TOP ── */
     .back-top {
       position: fixed;
@@ -666,15 +644,6 @@
     </div>
   </section>
 
-  <!-- GITHUB ACTIVITY -->
-  <section class="fade-up">
-    <h2>Recent commits</h2>
-    <p class="section-intro">What I've been pushing lately.</p>
-    <div class="gh-list" id="gh-activity">
-      <div class="gh-item"><span class="gh-icon"><i class="fa-solid fa-spinner fa-spin"></i></span><span class="gh-msg" style="color:var(--muted)">Loading…</span></div>
-    </div>
-  </section>
-
   <footer>
     Based in Los Angeles &nbsp;·&nbsp; Open to chats &nbsp;·&nbsp; <a href="mailto:agshah@usc.edu">agshah@usc.edu</a>
     <br>© Aadi Shah
@@ -721,30 +690,6 @@
   }
   tick();
 
-  // GitHub activity
-  fetch('https://api.github.com/users/aadigshahh/events/public')
-    .then(r => r.json())
-    .then(events => {
-      const pushes = events.filter(e => e.type === 'PushEvent').slice(0, 5);
-      const el = document.getElementById('gh-activity');
-      if (!pushes.length) { el.innerHTML = '<p style="color:var(--muted);font-size:0.88rem">No recent activity.</p>'; return; }
-      el.innerHTML = pushes.map(e => {
-        const msg  = (e.payload.commits?.[0]?.message || 'pushed code').split('\n')[0];
-        const repo = e.repo.name.replace('aadigshahh/', '');
-        const date = new Date(e.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-        return `<div class="gh-item">
-          <i class="fa-solid fa-code-commit gh-icon"></i>
-          <div style="flex:1;min-width:0">
-            <div class="gh-msg">${msg}</div>
-            <div class="gh-repo">${repo}</div>
-          </div>
-          <div class="gh-date">${date}</div>
-        </div>`;
-      }).join('');
-    })
-    .catch(() => {
-      document.getElementById('gh-activity').innerHTML = '';
-    });
 </script>
 
 </body>
