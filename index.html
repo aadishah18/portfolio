@@ -3,467 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Aadi Shah</title>
-  <meta name="description" content="USC junior building at the intersection of technology and markets — venture builder, founder of TBLE42, and mechanical engineer.">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="description" content="USC senior building at the intersection of AI, startups, and markets — venture builder, founder, and mechanical engineer.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-    :root {
-      --bg: #0b0b0d;
-      --panel: #020617;
-      --text: #f5f5f7;
-      --muted: #9ca3af;
-      --accent: #38bdf8;
-      --border: #1f2933;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    /* ── NOISE TEXTURE ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.028;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 256px;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-    }
-
-    /* ── SCROLL PROGRESS BAR ── */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), #818cf8);
-      z-index: 10000;
-      transition: width 0.08s linear;
-    }
-
-    /* ── FADE-UP ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ── HEADER ── */
-    .header-wrap {
-      position: sticky;
-      top: 1rem;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    .header {
-      pointer-events: auto;
-      width: 100%;
-      max-width: 720px;
-      background: transparent;
-      border-radius: 18px;
-      padding: 0.9rem 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: box-shadow 0.25s ease, padding 0.25s ease, background 0.25s ease;
-    }
-    .header.scrolled {
-      background: rgba(11,11,13,0.75);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 28px 70px rgba(0,0,0,0.55);
-      padding: 0.65rem 1.2rem;
-    }
-
-    .header-left { display: flex; align-items: center; gap: 1rem; }
-
-    .logo {
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      text-decoration: none;
-    }
-    .logo:hover { color: var(--accent); }
-
-    .name {
-      font-size: 1.45rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      color: var(--text);
-      text-decoration: none;
-      transition: font-size 0.25s ease, letter-spacing 0.25s ease;
-    }
-    .header.scrolled .name { font-size: 1.15rem; letter-spacing: -0.015em; }
-
-    .header-right { display: flex; align-items: center; }
-    .header-right a {
-      margin-left: 1rem;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 1.05rem;
-    }
-    .header-right a:hover { color: var(--accent); }
-
-    .nav-link {
-      font-size: 0.9rem !important;
-      color: var(--muted) !important;
-      font-weight: 500;
-    }
-    .nav-link:hover { color: var(--accent) !important; }
-
-    /* ── PAGE ── */
-    .page {
-      max-width: 720px;
-      margin: 2rem auto 7rem;
-      padding: 0 1.5rem;
-    }
-
-    /* ── HERO ── */
-    .hero { margin-bottom: 2.5rem; }
-
-    .hero > img {
-      width: 100%;
-      max-width: 650px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      margin: 0 0 0.6rem;
-      letter-spacing: -0.035em;
-      background: linear-gradient(120deg, #f5f5f7 30%, #38bdf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* ── TYPEWRITER ── */
-    .tagline {
-      font-size: 1rem;
-      color: var(--muted);
-      margin: 0 0 1.4rem;
-      min-height: 1.5rem;
-    }
-    .tagline .cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      background: var(--accent);
-      margin-left: 2px;
-      vertical-align: text-bottom;
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .intro {
-      font-size: 1.05rem;
-      color: #d1d5db;
-      margin-bottom: 1.4rem;
-    }
-
-    /* ── SKILLS ── */
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.6rem;
-    }
-    .skill-pill {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--muted);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.25rem 0.75rem;
-      letter-spacing: 0.02em;
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-    .skill-pill:hover {
-      color: var(--accent);
-      border-color: rgba(56,189,248,0.35);
-    }
-
-    /* ── CURRENTLY BUILDING STRIP ── */
-    .building-strip {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      background: rgba(56,189,248,0.05);
-      border: 1px solid rgba(56,189,248,0.14);
-      border-radius: 12px;
-      padding: 0.7rem 1.1rem;
-      margin-bottom: 5.5rem;
-    }
-    .building-strip strong { color: var(--text); font-weight: 600; }
-    .building-pulse {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-      animation: pulse-dot 2.2s ease infinite;
-    }
-
-    section { margin-top: 6rem; }
-
-    h2 {
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-    }
-
-    .section-intro {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 2rem;
-    }
-
-    /* ── WORK ── */
-    .work-list {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .work-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 1.4rem;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0)), var(--panel);
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
-    .work-item.active {
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 25px 60px rgba(0,0,0,0.55);
-    }
-    .work-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 0 1px var(--accent), 0 8px 32px rgba(56,189,248,0.1);
-    }
-
-    .work-left { display: flex; align-items: center; gap: 1rem; }
-    .work-left img {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      object-fit: cover;
-      background: #020617;
-      flex-shrink: 0;
-    }
-
-    .work-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .work-role { font-size: 0.9rem; color: var(--muted); }
-    .work-date { font-size: 0.9rem; color: var(--muted); white-space: nowrap; }
-
-    /* ── LIVE DOT ── */
-    .live-dot {
-      display: inline-block;
-      width: 7px;
-      height: 7px;
-      background: #22c55e;
-      border-radius: 50%;
-      flex-shrink: 0;
-      animation: pulse-dot 2.2s ease infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-      60% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
-    }
-
-    /* mobile work layout */
-    @media (max-width: 560px) {
-      .nav-link, .logo { display: none; }
-      .work-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-      .work-date { margin-left: calc(42px + 1rem); font-size: 0.82rem; }
-    }
-
-    /* ── PROJECTS GRID ── */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    @media (max-width: 700px) { .projects { grid-template-columns: 1fr; } }
-
-    .card {
-      position: relative;
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0)), var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      text-decoration: none;
-      color: var(--text);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 0 1px var(--accent), 0 8px 32px rgba(56,189,248,0.12);
-    }
-    .card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      background: #020617;
-      border-bottom: 1px solid var(--border);
-      filter: brightness(0.9) contrast(1.05);
-    }
-    /* SVG logos: contain + pad instead of stretch */
-    .card img[src$=".svg"] {
-      object-fit: contain;
-      padding: 1.5rem 2.5rem;
-      filter: none;
-      background: #060e1f;
-    }
-    .card-content { padding: 1.2rem; }
-    .card-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
-    .card-meta { font-size: 0.9rem; color: var(--muted); }
-
-    .external {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: rgba(2,6,23,0.8);
-      padding: 6px;
-      border-radius: 6px;
-      transition: transform 0.15s ease, color 0.15s ease;
-    }
-    .card:hover .external {
-      color: var(--accent);
-      transform: translateY(-2px) translateX(2px);
-    }
-
-    /* ── LIFE GRID ── */
-    .life-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4px;
-      margin-top: 1.5rem;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .life-grid img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      display: block;
-      filter: brightness(0.92);
-      transition: filter 0.2s ease, transform 0.2s ease;
-    }
-    .life-grid img:hover {
-      filter: brightness(1.05);
-      transform: scale(1.02);
-      z-index: 1;
-      position: relative;
-    }
-    @media (max-width: 560px) {
-      .life-grid { grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    }
-
-    /* ── BACK TO TOP ── */
-    .back-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 40px;
-      height: 40px;
-      background: rgba(11,11,13,0.85);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      color: var(--muted);
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.25s ease, transform 0.25s ease, color 0.15s ease, border-color 0.15s ease;
-      z-index: 50;
-      pointer-events: none;
-    }
-    .back-top.show { opacity: 1; transform: none; pointer-events: auto; }
-    .back-top:hover { color: var(--accent); border-color: rgba(56,189,248,0.4); }
-
-    /* ── FOOTER ── */
-    footer {
-      margin-top: 6rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      opacity: 0.85;
-      text-align: center;
-      line-height: 2;
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-  </style>
+  <link rel="stylesheet" href="site.css">
 </head>
 
 <body id="top">
 
 <div class="progress-bar" id="progressBar"></div>
+<a class="ai-corner" href="llms.txt" target="_blank" rel="noopener">Are you an agent?</a>
 
-<!-- HEADER -->
 <div class="header-wrap">
-  <div class="header">
+  <div class="header" id="header">
     <div class="header-left">
       <a href="#top" class="logo">AS</a>
       <a href="#top" class="name">Aadi Shah</a>
     </div>
     <div class="header-right">
-      <a href="#work" class="nav-link">Work</a>
-      <a href="projects.html" class="nav-link">Projects</a>
-      <a href="life.html" class="nav-link">Life</a>
+      <a href="#work" class="nav-link">Experience</a>
+      <a href="#thoughts" class="nav-link">Thoughts</a>
       <a href="mailto:agshah@usc.edu" title="Email"><i class="fa-solid fa-envelope"></i></a>
       <a href="https://www.linkedin.com/in/aadigshah/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
       <a href="Aadi_Shah_Resume_USC.pdf" target="_blank">Resume</a>
@@ -476,10 +39,10 @@
   <!-- HERO -->
   <div class="hero fade-up">
     <img src="images/home/me.jpeg" alt="Photo of Aadi Shah">
-    <h1>Hi! I'm Aadi</h1>
-    <p class="tagline"><span id="typewriter"></span><span class="cursor"></span></p>
+    <h1>Hi, I'm Aadi.</h1>
+    <p class="tagline">I'm a <span id="typewriter"></span><span class="cursor"></span></p>
     <p class="intro">
-      I'm a USC senior who builds things — companies, products, and go-to-market strategies. Right now I'm working with Scott Stanford at ACME Capital &amp; Silicon Foundry on a stealth AI venture for the VC industry, and co-founding a second stealth project in the consumer space.
+      I'm a USC senior who builds things — AI products, companies, and the go-to-market behind them. Right now I'm working with Scott Stanford at ACME Capital &amp; Silicon Foundry on a stealth AI venture, and solo-building a second stealth venture in the consumer space — both shipped end-to-end with Claude Code and a small stack of AI agents.
       <br><br>
       Alongside that, I've done strategy and investing at Bain Capital and EY, scouted early-stage deals at Draper Associates, and closed $25K+ in sales at a Southeast Asia hardware distributor. I'm also a mechanical engineer completing a B.S. at USC — I've worked on rocket propulsion, autonomous vehicles, and consumer hardware.
       <br><br>
@@ -489,150 +52,160 @@
     </p>
   </div>
 
-  <!-- WORK -->
+  <!-- EXPERIENCE -->
   <section id="work" class="fade-up">
-    <h2>Work</h2>
+    <h2>Experience</h2>
     <div class="work-list">
 
-      <div class="work-item active">
-        <div class="work-left">
-          <img src="images/work/stealth.png" alt="Stealth">
-          <div>
-            <div class="work-title">Stealth <span class="live-dot"></span></div>
-            <div class="work-role">Founder</div>
+      <details class="work-item active">
+        <summary>
+          <div class="work-left">
+            <span class="wk-stealth" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
+            <div>
+              <div class="work-title">Stealth <span class="live-dot"></span></div>
+              <div class="work-role">Founder</div>
+            </div>
           </div>
-        </div>
-        <div class="work-date">Aug 2025 – Present</div>
+          <div class="work-date">Aug 2025 – Present</div>
+        </summary>
+        <div class="work-detail">Founding a stealth venture — building the product end-to-end and the go-to-market around it, shipped solo with Claude&nbsp;Code.</div>
+      </details>
+
+      <details class="work-item active">
+        <summary>
+          <div class="work-left">
+            <img src="images/work/acme.jpg" alt="ACME Capital">
+            <div>
+              <div class="work-title">ACME Capital <span class="live-dot"></span></div>
+              <div class="work-role">Venture Builder</div>
+            </div>
+          </div>
+          <div class="work-date">Mar 2026 – Present</div>
+        </summary>
+        <div class="work-detail">Building a stealth AI venture with co-founder Scott&nbsp;Stanford — owning the product end-to-end (multi-source data ingestion, integrations, automated pipelines) in Claude&nbsp;Code, Python, and React.</div>
+      </details>
+
+      <details class="work-item">
+        <summary>
+          <div class="work-left">
+            <img src="images/work/adaptive-security.png" alt="Adaptive Security">
+            <div>
+              <div class="work-title">Adaptive Security</div>
+              <div class="work-role">GTM / RevOps Intern</div>
+            </div>
+          </div>
+          <div class="work-date">May 2026 – Jul 2026</div>
+        </summary>
+        <div class="work-detail">Owned RevOps automation: built Claude-to-Salesforce pipelines and a merge-request bot that lifted CRM accuracy <strong>~30%</strong> and saved the team <strong>1–2 hrs/day</strong>; ran outbound prospecting and took over a marketing campaign.</div>
+      </details>
+
+      <details class="work-item">
+        <summary>
+          <div class="work-left">
+            <img src="images/work/draper.png" alt="Draper Associates">
+            <div>
+              <div class="work-title">Draper Associates</div>
+              <div class="work-role">Venture Scout</div>
+            </div>
+          </div>
+          <div class="work-date">Dec 2023 – Dec 2025</div>
+        </summary>
+        <div class="work-detail">Sole SoCal scout — sourced and diligenced <strong>30+</strong> early-stage startups across deep tech, climate, and AI, and wrote investment summaries for the partners.</div>
+      </details>
+
+      <details class="work-item">
+        <summary>
+          <div class="work-left">
+            <img src="images/work/ey.png" alt="Ernst & Young">
+            <div>
+              <div class="work-title">Ernst &amp; Young (EY)</div>
+              <div class="work-role">Consulting Intern</div>
+            </div>
+          </div>
+          <div class="work-date">May 2025 – Aug 2025</div>
+        </summary>
+        <div class="work-detail">Only intern working with partners on a 45-person team for a <strong>$10M</strong> Singapore government contract — built executive strategy decks and budget models, and advised an aerospace client on its Singapore expansion.</div>
+      </details>
+
+      <details class="work-item">
+        <summary>
+          <div class="work-left">
+            <img src="images/work/bain.png" alt="Bain Capital">
+            <div>
+              <div class="work-title">Bain Capital</div>
+              <div class="work-role">Summer Analyst</div>
+            </div>
+          </div>
+          <div class="work-date">Jun 2024 – Aug 2024</div>
+        </summary>
+        <div class="work-detail">Sole undergrad on a <strong>$100M+</strong> live deal team (subsequently acquired) — built LBO models and investment memos across market, competition, risk, and exit paths.</div>
+      </details>
+
+      <details class="work-item">
+        <summary>
+          <div class="work-left">
+            <img src="images/work/rpl.png" alt="USC Rocket Propulsion Lab">
+            <div>
+              <div class="work-title">USC Rocket Propulsion Lab</div>
+              <div class="work-role">Structures &amp; Analysis Engineer</div>
+            </div>
+          </div>
+          <div class="work-date">Jan 2024 – May 2026</div>
+        </summary>
+        <div class="work-detail">Aerothermal and structural analysis of rocket nozzles and a 7068-aluminum bulkhead in ANSYS; designed mounting components for propulsion hardware.</div>
+      </details>
+
+      <details class="work-item">
+        <summary>
+          <div class="work-left">
+            <img src="images/work/usc-racing.png" alt="USC Racing">
+            <div>
+              <div class="work-title">USC Racing (SAE)</div>
+              <div class="work-role">Drivetrain &amp; Aerodynamics Engineer</div>
+            </div>
+          </div>
+          <div class="work-date">Dec 2023 – May 2024</div>
+        </summary>
+        <div class="work-detail">Designed a chain-shield and motor-mount redesign (<strong>+5%</strong> drivetrain efficiency, <strong>−15%</strong> component wear) and a CFD-optimized front wing.</div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- THOUGHTS -->
+  <section id="thoughts" class="fade-up">
+    <h2>Thoughts</h2>
+    <p class="section-intro">Short notes on where AI, infrastructure, and startups are heading — written from an engineer's seat rather than an analyst's.</p>
+    <div class="post-list">
+
+      <div class="post">
+<div class="post-title">AI's Next Bottleneck Isn't Intelligence — It's Energy and Water</div>
+        <div class="post-hook">Why the limits on the next decade of AI are physical — power, cooling, water — and what a mechanical engineering background says about who solves them.</div>
       </div>
 
-      <div class="work-item active">
-        <div class="work-left">
-          <img src="images/work/acme.jpg" alt="ACME Capital">
-          <div>
-            <div class="work-title">ACME Capital <span class="live-dot"></span></div>
-            <div class="work-role">Venture Fellow</div>
-          </div>
-        </div>
-        <div class="work-date">Mar 2026 – Present</div>
+      <div class="post">
+<div class="post-title">What Building AI Products Taught Me About Investing</div>
+        <div class="post-hook">Shipping software solo changes how you read a startup. Notes on what's obvious from the build side that's invisible from the outside.</div>
       </div>
 
-      <div class="work-item active">
-        <div class="work-left">
-          <img src="images/work/adaptive-security.png" alt="Adaptive Security">
-          <div>
-            <div class="work-title">Adaptive Security <span class="live-dot"></span></div>
-            <div class="work-role">GTM / RevOps Intern</div>
-          </div>
-        </div>
-        <div class="work-date">May 2026 – Present</div>
-      </div>
-
-      <div class="work-item active">
-        <div class="work-left">
-          <img src="images/work/draper.png" alt="Draper Associates">
-          <div>
-            <div class="work-title">Draper Associates <span class="live-dot"></span></div>
-            <div class="work-role">Venture Scout</div>
-          </div>
-        </div>
-        <div class="work-date">Dec 2023 – Present</div>
-      </div>
-
-      <div class="work-item">
-        <div class="work-left">
-          <img src="images/work/ey.png" alt="Ernst & Young">
-          <div>
-            <div class="work-title">Ernst & Young (EY)</div>
-            <div class="work-role">Consulting Intern</div>
-          </div>
-        </div>
-        <div class="work-date">May 2025 – Aug 2025</div>
-      </div>
-
-      <div class="work-item">
-        <div class="work-left">
-          <img src="images/work/bain.png" alt="Bain Capital">
-          <div>
-            <div class="work-title">Bain Capital</div>
-            <div class="work-role">Summer Analyst</div>
-          </div>
-        </div>
-        <div class="work-date">Jun 2024 – Aug 2024</div>
-      </div>
-
-      <div class="work-item">
-        <div class="work-left">
-          <img src="images/work/rpl.png" alt="USC Rocket Propulsion Lab">
-          <div>
-            <div class="work-title">USC Rocket Propulsion Lab</div>
-            <div class="work-role">Structures & Analysis Engineer</div>
-          </div>
-        </div>
-        <div class="work-date">Jan 2024 – May 2026</div>
-      </div>
-
-      <div class="work-item">
-        <div class="work-left">
-          <img src="images/work/usc-racing.png" alt="USC Racing">
-          <div>
-            <div class="work-title">USC Racing (SAE)</div>
-            <div class="work-role">Drivetrain & Aerodynamic Engineer</div>
-          </div>
-        </div>
-        <div class="work-date">Dec 2023 – May 2024</div>
+      <div class="post">
+<div class="post-title">Lessons From Automating a GTM Team</div>
+        <div class="post-hook">What replacing manual CRM work with AI workflows taught me about where real leverage hides inside a company.</div>
       </div>
 
     </div>
   </section>
 
   <footer>
-    made with ❤️ by aadi
+    Based in Los Angeles &nbsp;·&nbsp; <a href="mailto:agshah@usc.edu">agshah@usc.edu</a>
     <br>© Aadi Shah
   </footer>
 
 </main>
 
-<a href="#top" class="back-top" id="backTop" aria-label="Back to top">
-  <i class="fa-solid fa-arrow-up"></i>
-</a>
+<a href="#top" class="back-top" id="backTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
 
-<script>
-  const header  = document.querySelector('.header');
-  const backTop = document.getElementById('backTop');
-  const bar     = document.getElementById('progressBar');
-
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (y / total * 100) + '%';
-    header.classList.toggle('scrolled', y > 20);
-    backTop.classList.toggle('show', y > 400);
-  });
-
-  // Fade-up on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Typewriter
-  const phrases = ['founder.', 'venture fellow.', 'mechanical engineer.', 'GTM builder.'];
-  let pi = 0, ci = 0, deleting = false;
-  const tw = document.getElementById('typewriter');
-  function tick() {
-    const phrase = phrases[pi];
-    tw.textContent = deleting ? phrase.slice(0, ci--) : phrase.slice(0, ci++);
-    let delay = deleting ? 45 : 90;
-    if (!deleting && ci > phrase.length) { deleting = true; delay = 1600; }
-    else if (deleting && ci < 0) { deleting = false; ci = 0; pi = (pi + 1) % phrases.length; delay = 400; }
-    setTimeout(tick, delay);
-  }
-  tick();
-
-
-</script>
+<script src="site.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+# Aadi Shah
+
+> USC mechanical engineer (May 2027) who ships production AI products solo and has done venture work at Bain Capital, Draper, and ACME. Recruiting for full-time 2027 roles.
+
+## Targeting
+Full-time, 2027 start. AI builder / forward-deployed / founding engineer (primary); venture analyst; founder-adjacent ops.
+
+## Location & work authorization
+Los Angeles; open to SF / NYC. US work-authorized (F-1 + STEM OPT — no sponsorship needed at hire).
+
+## Education
+USC — BS Mechanical Engineering, minor Business Finance. May 2027. GPA 3.8. Presidential Scholar.
+
+## Building now
+- Stealth AI venture — ACME Capital & Silicon Foundry, with co-founder Scott Stanford. Product built end-to-end (data ingestion, integrations, automated pipelines) in Claude Code, Python, React, cloud.
+- Stealth consumer app — solo founder. Mobile + web + backend shipped alone in Next.js / Expo / Supabase. 20 launch partners engaged.
+
+## Evidence
+- Bain Capital — sole undergrad on a $100M+ live deal team (subsequently acquired).
+- Draper Associates — sourced and diligenced 30+ early-stage startups as scout.
+- Adaptive Security — GTM/RevOps; built Claude-to-Salesforce automations: ~30% data-accuracy gain, 1–2 hrs/day saved, merge-request bot.
+- EY — consulting intern; $25K+ B2B closed independently.
+- USC Rocket Propulsion Lab + Formula SAE — structures and aerodynamics engineering.
+
+## Stack
+Claude Code, AI agents, Python, React/Next.js, Expo, Supabase, Salesforce, CAD (SolidWorks/NX), ANSYS.
+
+## Contact
+- Email: agshah@usc.edu
+- LinkedIn: https://www.linkedin.com/in/aadigshah/
+- GitHub: https://github.com/aadishah18
