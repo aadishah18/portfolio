@@ -43,42 +43,12 @@
   els.forEach(el => obs.observe(el));
 })();
 
-// ── Experience rows: smooth height accordion (keeps native <details> a11y) ──
-(function () {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.work-item').forEach(item => {
-    const summary = item.querySelector('summary');
-    const detail = item.querySelector('.work-detail');
-    if (!summary || !detail) return;
-    summary.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (reduce) { item.open = !item.open; return; }
-      if (item.open) {
-        detail.style.height = detail.scrollHeight + 'px';
-        requestAnimationFrame(() => { detail.style.height = '0px'; });
-        detail.addEventListener('transitionend', function done(ev) {
-          if (ev.propertyName !== 'height') return;
-          item.open = false; detail.style.height = '';
-          detail.removeEventListener('transitionend', done);
-        });
-      } else {
-        item.open = true;
-        detail.style.height = '0px';
-        requestAnimationFrame(() => { detail.style.height = detail.scrollHeight + 'px'; });
-        detail.addEventListener('transitionend', function done(ev) {
-          if (ev.propertyName !== 'height') return;
-          detail.style.height = 'auto';
-          detail.removeEventListener('transitionend', done);
-        });
-      }
-    });
-  });
-})();
+// Experience rows are always expanded now; no accordion behavior needed.
 
 // ── Experience rows: cursor-following sheen ──
 (function () {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.querySelectorAll('.work-item > summary').forEach(s => {
+  document.querySelectorAll('.work-item > .work-head').forEach(s => {
     s.addEventListener('pointermove', (e) => {
       const r = s.getBoundingClientRect();
       s.style.setProperty('--mx', (e.clientX - r.left) + 'px');
