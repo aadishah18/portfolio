@@ -61,7 +61,7 @@
 (function () {
   const tw = document.getElementById('typewriter');
   if (!tw) return;
-  const phrases = ['founder.', 'builder.', 'investor.', 'engineer.'];
+  const phrases = ['founder', 'builder', 'investor', 'engineer'];
   let pi = 0, ci = 0, deleting = false;
   (function tick() {
     const phrase = phrases[pi];
