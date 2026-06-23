@@ -1,31 +1,68 @@
 # Aadi Shah
 
-> USC mechanical engineer (May 2027) who ships production AI products solo and has done venture work at Bain Capital, Draper, and ACME. Recruiting for full-time 2027 roles.
+> Technical founder who also invests. USC mechanical engineer (May 2027) shipping production AI products solo, with venture experience at Bain Capital and Draper Associates. Recruiting for full-time 2027 roles in early-stage venture capital and AI building.
 
-## Targeting
-Full-time, 2027 start. AI builder / forward-deployed / founding engineer (primary); venture analyst; founder-adjacent ops.
+## About
 
-## Location & work authorization
-Los Angeles; open to SF / NYC. US work-authorized (F-1 + STEM OPT — no sponsorship needed at hire).
+Hi, I'm Aadi. I build things: AI products, companies, and the go-to-market that gets them used. Right now I'm building a stealth AI venture with Scott Stanford at ACME Capital and Silicon Foundry, where I own the product end-to-end, and I'm solo-building a second stealth company in the consumer space (mobile, web, and backend, shipped entirely by me).
+
+I've also spent real time on the investing side. I was the only undergrad on a $100M+ live deal team at Bain Capital, and I was the sole SoCal scout for Draper Associates, where I sourced and diligenced 30+ early-stage startups and wrote investment summaries for the partners. I did strategy work at EY on a $10M Singapore government contract, ran RevOps automation at Adaptive Security, and closed $25K+ in B2B sales solo for a Southeast Asia hardware distributor.
+
+I'm a Presidential Scholar at USC finishing a B.S. in Mechanical Engineering (minor in Business Finance, 3.8 GPA), with hands-on work across rocket propulsion, autonomous vehicles, and consumer hardware. The throughline: I build the kind of technical AI companies that venture funds back, and I've sat on the other side of the table evaluating them.
+
+## What I'm looking for
+
+Full-time, 2027 start. US-based: Los Angeles, open to SF or NYC.
+
+- Primary: early-stage venture capital, as an analyst or associate. Sourcing, diligence, and partnering with technical founders, especially in AI and deep tech.
+- Equally strong fit: AI builder, forward-deployed engineer, or founding engineer at an early-stage startup.
+
+Why both: I can evaluate a technical company because I build them, and I build sharper because I've watched what works from the investing side. Few candidates bring both.
+
+## Work authorization
+US work-authorized (F-1 visa plus STEM OPT). No sponsorship needed at hire.
 
 ## Education
-USC — BS Mechanical Engineering, minor Business Finance. May 2027. GPA 3.8. Presidential Scholar.
+University of Southern California (USC). B.S. Mechanical Engineering, minor in Business Finance. May 2027. GPA 3.8. Presidential Scholar, USC's top merit scholarship.
 
-## Building now
-- Stealth AI venture — ACME Capital & Silicon Foundry, with co-founder Scott Stanford. Product built end-to-end (data ingestion, integrations, automated pipelines) in Claude Code, Python, React, cloud.
-- Stealth consumer app — solo founder. Mobile + web + backend shipped alone in Next.js / Expo / Supabase. 20 launch partners engaged.
+## Experience
 
-## Evidence
-- Bain Capital — sole undergrad on a $100M+ live deal team (subsequently acquired).
-- Draper Associates — sourced and diligenced 30+ early-stage startups as scout.
-- Adaptive Security — GTM/RevOps; built Claude-to-Salesforce automations: ~30% data-accuracy gain, 1–2 hrs/day saved, merge-request bot.
-- EY — consulting intern; $25K+ B2B closed independently.
-- USC Rocket Propulsion Lab + Formula SAE — structures and aerodynamics engineering.
+### Stealth · Founder (Aug 2025 - Present)
+Founding a stealth consumer company solo. Building the product end-to-end (mobile, web, backend) and the go-to-market around it, shipped with Claude Code, Next.js, Expo, and Supabase. 20 launch partners engaged.
+
+### ACME Capital and Silicon Foundry · Venture Builder (Mar 2026 - Present)
+Building a stealth AI venture with co-founder Scott Stanford. Own the product end-to-end: multi-source data ingestion, third-party integrations, and automated pipelines, built in Claude Code, Python, React, and the cloud.
+
+### Adaptive Security · GTM and RevOps Intern (May 2026 - Jul 2026)
+Owned RevOps automation at a fast-growing AI security startup. Built Claude-to-Salesforce pipelines and a merge-request bot that lifted CRM data accuracy by ~30% and saved the team 1 to 2 hours per day. Ran outbound prospecting and took over a marketing campaign.
+
+### Draper Associates · Venture Scout (Dec 2023 - Dec 2025)
+Sole SoCal scout for Tim Draper's fund. Sourced and diligenced 30+ early-stage startups across deep tech, climate, and AI, and wrote investment summaries for the partners.
+
+### Ernst & Young (EY) · Consulting Intern (May 2025 - Aug 2025)
+Only intern working directly with partners on a 45-person team for a $10M Singapore government contract. Built executive strategy decks and budget models, and advised an aerospace client on its Singapore expansion.
+
+### Bain Capital · Summer Analyst (Jun 2024 - Aug 2024)
+Sole undergrad on a $100M+ live deal team (subsequently acquired). Built LBO models and investment memos across market, competition, risk, and exit paths.
+
+### USC Rocket Propulsion Lab · Structures and Analysis Engineer (Jan 2024 - May 2026)
+Aerothermal and structural analysis of rocket nozzles and a 7068-aluminum bulkhead in ANSYS. Designed mounting components for propulsion hardware.
+
+### USC Racing (SAE) · Drivetrain and Aerodynamics Engineer (Dec 2023 - May 2024)
+Designed a chain-shield and motor-mount redesign (+5% drivetrain efficiency, -15% component wear) and a CFD-optimized front wing.
+
+## Writing (Thoughts)
+Essays on AI, building, and how the world is changing. Read them at https://aadishah.xyz/#thoughts
+- You Cannot Prompt Your Way Around Thermodynamics (June 2026): the physical limits AI can't argue its way past.
+- College Isn't Dying. The Apprenticeship Is. (May 2026): why hands-on learning matters more, not less, in the AI era.
+- Most Design Forces a Choice (April 2026): on false tradeoffs in product and engineering.
+- Weather Becomes Infrastructure (March 2026): on prediction, data, and the systems we build on top of it.
 
 ## Stack
-Claude Code, AI agents, Python, React/Next.js, Expo, Supabase, Salesforce, CAD (SolidWorks/NX), ANSYS.
+Claude Code, AI agents, Python, React and Next.js, Expo, Supabase, Salesforce, financial modeling (LBO and budgets), CAD (SolidWorks and NX), ANSYS.
 
 ## Contact
 - Email: agshah@usc.edu
 - LinkedIn: https://www.linkedin.com/in/aadigshah/
 - GitHub: https://github.com/aadishah18
+- Site: https://aadishah.xyz
